@@ -1,0 +1,56 @@
+			NODEPRIME/QUIZ
+
+	Given a list of words ...... user to input different data.
+
+FILES INCLUDED:
+	dictionay.txt   - 
+	sampledict1.txt - 
+	sampledict2.txt - All three are sample files to see output. dictionary.txt is the original given list of words.
+	Makefile 	- main idea was to only have to type in make to build program. Might give issues. Please check c++ 2011 				compatibility.
+	temp.cpp	- main program contained here.
+
+PLATFORM SUPPORT:
+	I tried this on linux ubuntu 14.04.
+
+BASIC APPROACH:
+	This is a dynamic programming question. 
+	Thus, a way to solve it is to base it on a simpler dynamic programming question of which this is a twist.
+
+	I picked up the classic problem of "for a dictionary, see if a given word can be broken down into a sequence of dictionary words" 		and have applied the characteristic of length to solve this question.
+
+
+USER INPUT
+	The user can input any dictionary/file with one word on each line and call it during run time.
+
+
+BUILD AND RUN:
+OPTION1:	Have the g++ compiler installed.
+		Use the command 'g++ -std=c++11 temp.cpp'
+		Run the executable ./a.out dictionary.txt
+		Note: User can replace dictionary.txt with any other file of choice.
+
+OPTION2:	The Makefile is included.
+		Use the command "make" in a linux command line.
+		Run the executable ./output dictionary.txt	
+		Note: this option has some difficulty on building on some platforms and might involve some correction. I did not spend too
+		much time to see why.
+
+
+ASSUMPTIONS:
+	- Running the program on the given lists of words returns a string with is the answer. Technically, we can have more than one 			answer and I should print out all of them. However, here I am only printing one solution as there is no other word which 			can be the answer. 
+
+INITIAL STEP:
+	- take first letter from word (prefixes) and see if it is a word in the dictionary. If not take the next letter and search.
+	- If a set of letters forming a prefix is in the dictionary, return true. If not, return false.
+	- If we keep checking all the prefixes in the word till the end and cant find anything, we return a false.
+	- If we however return a true, take the rest of the word (other than the prefix), which is a new word essentially and apply
+		similar operation until no more letters are left.
+
+FINAL STEP:
+	- Every time a word is a compound word, we get a true value using the recursive check function.
+	- We can simply keep a track of the longest word we got uptil this point by storing it in a local variable.
+	- The local variable will have the final answer.
+
+RUNNING TIME AND SPACE COMPLEXITY:
+	- The running time should be O(mn) where m is the length of a word and n is the number of words in the dictionary
+	- The space complexcity is O(n) where n is the number of words in the dictionary
