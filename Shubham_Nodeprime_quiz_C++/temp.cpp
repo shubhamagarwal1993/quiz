@@ -28,8 +28,6 @@ bool check_dict(string word, string current_word, unordered_map<string,int>& dic
 bool break_word(string &current_word, unordered_map<string,int>& dict)
 {
 	int size = current_word.size();			//store size of word as it will chance later on
-	if (size == 0)					//base case
-		return true;
 
 	/* structure to maintian prefixes */
 	bool dptable[size+1];
